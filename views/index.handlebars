@@ -1,0 +1,40 @@
+
+<div class="container">
+<div class="card mx-auto" style="width: 40rem;">
+<div class="card-header">
+<h1 class="text-center">Eat A Burger!</h1>
+</div>
+<div class="card-body mx-auto">
+
+<h2 class="card-title">Available Burgers</h2>
+
+<ul class="justify-content-center">
+  {{#each burgers}}
+    {{#unless devoured}}
+      {{> burgers/burger-block devoured=0}}
+    {{/unless}}
+  {{/each}}
+</ul>
+<br>
+<h2 class="card-title">Devoured Burgers</h2>
+
+<ul class="justify-content-center">
+  {{#each burgers}}
+    {{#if devoured}}
+      {{> burgers/burger-block devoured=1}}
+    {{/if}}
+  {{/each}}
+</ul>
+<br>
+<h2 class="card-title">Add a Burger</h2>
+<form class="create-form">
+
+  <div class="form-group">
+    <label for="burger">Burger Name:</label><br>
+    <input type="text" id="burger" name="name">
+  </div>
+
+  <button class="btn btn-secondary" type="submit">Add Burger</button>
+</form>
+</div>
+</div>

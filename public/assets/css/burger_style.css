@@ -1,0 +1,24 @@
+body {
+	font-family: 'helvetica neue', sans-serif;
+}
+
+
+h1 {
+	font-family: 'Cabin Sketch', cursive;
+	font-size: 64px;
+}
+
+.container {
+	background-image: url('/assets/img/burger.jpeg');
+	background-repeat: no-repeat;
+	padding: 10px;
+}
+
+.card {
+	background-color: rgba(255,255,255, 0.6);
+	margin: 10px;
+}
+
+.card-body {
+	padding: 20px;
+}
