@@ -28,7 +28,7 @@ module.exports = pool;
 **/
 
 var mysql = require("mysql");
-
+/**
 // we placed the connections in this source object
 var source = {
   // localhost
@@ -41,17 +41,17 @@ var source = {
   },
 
   // clearDB
-  clearDB: {
+  jawsDB: {
     port: 3306,
     host: "us-cdbr-east.cleardb.com",
     user: "adffdadf2341",
     password: "adf4234",
     database: "heroku_db"
   }
-};
+}; **/
 
 // we use source.[name of connection] to hook into mysql
-var connection = mysql.createConnection(source.clearDB);
+var connection = mysql.createConnection(process.env.JAWSDB_URL);
 
 connection.connect(function(err) {
   if (err) {
