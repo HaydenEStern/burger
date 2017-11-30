@@ -1,22 +1,38 @@
-// Set up MySQL connection.
-var mysql = require("mysql");
+const mysql = require('mysql')
 
-var connection = mysql.createConnection({
-  port: 3306,
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "burgers_db"
-});
+var config = {
+  host:'us-cdbr-iron-east-05.cleardb.net',
+  user: 'root',
+  password: '',
+  database: 'heroku_database'
+};
 
-// Make connection.
-connection.connect(function(err) {
-  if (err) {
-    console.error("error connecting: " + err.stack);
-    return;
-  }
-  console.log("connected as id " + connection.threadId);
-});
+var pool = mysql.createPool(config)
 
-// Export connection for our ORM to use.
-module.exports = connection;
+module.exports = {
+    query: function(){
+        var sql_args = [];
+        var args = [];
+        for(var i=0; i<arguments.length; i++){
+            args.push(arguments[i]);
+        }
+        var callback = args[args.length-1]; //last arg is callback
+        pool.getConnection(function(err, connection) {
+        if(err) {
+                console.log(err);
+                return callback(err);
+            }
+            if(args.length > 2){
+                sql_args = args[1];
+            }
+        connection.query(args[0], sql_args, function(err, results) {
+          connection.release(); // always put connection back in pool after last query
+          if(err){
+                    console.log(err);
+                    return callback(err);
+                }
+          callback(null, results);
+        });
+      });
+    }
+};
