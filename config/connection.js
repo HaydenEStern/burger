@@ -1,4 +1,4 @@
-const mysql = require('mysql');
+/**const mysql = require('mysql');
 
 var config = {
   port: 3306
@@ -25,3 +25,40 @@ pool.getConnection(function(err, connection) {
 
 
 module.exports = pool;
+**/
+
+var mysql = require("mysql");
+
+// we placed the connections in this source object
+var source = {
+  // localhost
+  localhost: {
+    port: 3306,
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "todolist"
+  },
+
+  // clearDB
+  clearDB: {
+    port: 3306,
+    host: "us-cdbr-east.cleardb.com",
+    user: "adffdadf2341",
+    password: "adf4234",
+    database: "heroku_db"
+  }
+};
+
+// we use source.[name of connection] to hook into mysql
+var connection = mysql.createConnection(source.clearDB);
+
+connection.connect(function(err) {
+  if (err) {
+    console.error("error connecting: " + err.stack);
+    return;
+  }
+  console.log("connected as id " + connection.threadId);
+});
+
+module.exports = connection;
