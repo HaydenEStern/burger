@@ -13,7 +13,7 @@ var pool = mysql.createPool(config);
 
 pool.getConnection(function(err, connection) {
   // Use the connection
-  connection.query('SELECT something FROM sometable', function (error, results, fields) {
+  connection.query('SELECT * FROM burgers', function (error, results, fields) {
     // And done with the connection.
     connection.release();
 
