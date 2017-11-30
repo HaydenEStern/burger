@@ -4,7 +4,7 @@ var config = {
   host:'us-cdbr-iron-east-05.cleardb.net',
   user: 'root',
   password: '',
-  database: 'heroku_database'
+  database: 'heroku_b8fd4a5101137fa'
 };
 
 var pool = mysql.createPool(config)
