@@ -1,13 +1,15 @@
-const mysql = require('mysql')
+const mysql = require('mysql');
+// mysql://adffdadf2341:adf4234@us-cdbr-east.cleardb.com/heroku_db?reconnect=true
 
 var config = {
-  host:'us-cdbr-iron-east-05.cleardb.net',
-  user: 'bb6450110835d3',
-  password: '8c513618',
-  database: 'heroku_b8fd4a5101137fa'
+  port: 3306
+  host:'us-cdbr-iron-east-05.cleardb.net' || 'localhost',
+  user: 'bb6450110835d3' || 'root',
+  password: '8c513618' || '',
+  database: 'adffdadf2341' || 'burgers_db'
 };
 
-var pool = mysql.createPool(config)
+var pool = mysql.createPool(config);
 
 module.exports = {
     query: function(){
